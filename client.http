@@ -2,7 +2,42 @@
 @baseUrl = http://localhost:3333
 
 ### Health Check
+# @name healthCheck
 GET {{baseUrl}}/health
 
-#GET rooms
+###GET rooms
+# @name getRooms
 GET {{baseUrl}}/rooms
+
+###
+
+#Create Room
+# @name createRoom
+POST {{baseUrl}}/rooms
+Content-Type: application/json
+
+{
+  "name": "Sala de Teste",
+  "description": "Room Description"
+}
+
+###
+
+@roomId = {{createRoom.response.body.$.roomId}}
+
+###
+
+#Get Room questions
+# @name getRoomQuestions
+GET {{baseUrl}}/rooms/{{roomId}}/questions
+
+###
+
+#Create Question
+# @name createQuestion
+POST {{baseUrl}}/rooms/{{roomId}}/questions
+Content-Type: application/json
+
+{
+  "questions": "Qual o conceito de programação funcional?"
+}

@@ -7,6 +7,8 @@
   "scripts": {
     "start": "tsx --env-file .env --no-warnings src/server.ts",
     "dev": "tsx --env-file .env --no-warnings --watch src/server.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
     "db:seed": "tsx --env-file .env --no-warnings src/db/seed.ts"
   },
   "keywords": [],

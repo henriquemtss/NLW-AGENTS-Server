@@ -8,6 +8,20 @@
       "when": 1752546682855,
       "tag": "0000_first_corsair",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1755463318387,
+      "tag": "0001_aspiring_greymalkin",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1755470585883,
+      "tag": "0002_ambitious_wallow",
+      "breakpoints": true
     }
   ]
 }

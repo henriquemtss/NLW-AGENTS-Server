@@ -1,6 +1,7 @@
 import {reset, seed} from 'drizzle-seed'
-import { db } from './connection'
+import { db, sql } from './connection'
 import { schema } from './schema/index.ts'
+import { questions } from './schema/questions.ts';
 
 
   await reset(db, schema);
@@ -10,7 +11,15 @@ import { schema } from './schema/index.ts'
       columns: {
         name: f.companyName(),
         description: f.loremIpsum()
-      }
-    }
+      },
+    },
+    questions: {
+      count: 10,
+    },
   }))
     
+
+  await sql.end()
+
+  console.log('Database seeded successfully');
+  
