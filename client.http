@@ -39,5 +39,5 @@ POST {{baseUrl}}/rooms/{{roomId}}/questions
 Content-Type: application/json
 
 {
-  "questions": "Qual o conceito de programação funcional?"
+  "question": "Qual o conceito de programação funcional?"
 }

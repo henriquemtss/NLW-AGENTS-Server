@@ -22,6 +22,13 @@
       "when": 1755470585883,
       "tag": "0002_ambitious_wallow",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1756057588066,
+      "tag": "0003_fuzzy_living_tribunal",
+      "breakpoints": true
     }
   ]
 }
