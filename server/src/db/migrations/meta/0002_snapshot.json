@@ -27,8 +27,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "amswer": {
-          "name": "amswer",
+        "answer": {
+          "name": "answer",
           "type": "text",
           "primaryKey": false,
           "notNull": false

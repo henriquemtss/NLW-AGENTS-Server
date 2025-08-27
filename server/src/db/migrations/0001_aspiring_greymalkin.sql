@@ -2,7 +2,7 @@ CREATE TABLE "questions" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"room_id" uuid NOT NULL,
 	"questions" text NOT NULL,
-	"amswer" text,
+	"answer" text,
 	"creayed_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint

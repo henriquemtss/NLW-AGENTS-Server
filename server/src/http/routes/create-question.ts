@@ -3,7 +3,7 @@ import { db } from "../../db/connection";
 import { schema } from "../../db/schema";
 import z from "zod/v4";
 import { questions } from "../../db/schema/questions";
-import { generateEmbeddings } from "../../services/gemini";
+import { generateAnswer, generateEmbeddings } from "../../services/gemini";
 import { and, eq, sql } from "drizzle-orm";
 
 export const createQuestionRoute: FastifyPluginCallbackZod =  (app) => {
@@ -42,25 +42,33 @@ export const createQuestionRoute: FastifyPluginCallbackZod =  (app) => {
         .orderBy(sql`${schema.audioChunks.embeddings} <=> ${embeddingsAsString}::vector`)
         .limit(3)
         
-        return chunks
-        
+        let answer: string | null = null
 
-        // const result = await db
-        // .insert(schema.questions)
-        // .values({
-        //     roomId,
-        //     question,
-        // }).returning()
+        if (chunks.length > 0){
+            const transcriptions = chunks.map(chunk => chunk.transcription)
 
-        // const insertedQuestion = result[0]
+            answer = await generateAnswer(question, transcriptions)
+            
+        }    
 
-        // if (!insertedQuestion) {
-        //     throw new Error('Failed to create new question')
-        // }
+        const result = await db
+        .insert(schema.questions)
+        .values({
+            roomId,
+            question,
+            answer,
+        }).returning()
 
-        // return reply.status(201).send({
-        //     questionId: insertedQuestion.id
-        // })
+        const insertedQuestion = result[0]
+
+        if (!insertedQuestion) {
+            throw new Error('Failed to create new question')
+        }
+
+        return reply.status(201).send({
+            questionId: insertedQuestion.id,
+            answer, 
+        })
         
     })
 }
